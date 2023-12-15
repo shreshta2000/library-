@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+{% block body %}
+<br>
+<br>
+{% if book %}
+<h2>{{book.title}}</h2>
+<p><i>by {{book.author}}</i></p>
+<a href="/edit_book/{{book.id}}" class="btn btn-success">Edit</a>
+<hr>
+<br>
+<table class="table">
+    <tbody>
+        <tr>
+            <td><b>Book ID</b></td>
+            <td>{{book.id}}</td>
+            <td><b>Title</b></td>
+            <td>{{book.title}}</td>
+        </tr>
+        <tr>
+            <td><b>Author(s)</b></td>
+            <td>{{book.author}}</td>
+            <td><b>Average Rating</b></td>
+            <td>{{book.average_rating}}</td>
+        </tr>
+        <tr>
+            <td><b>ISBN</b></td>
+            <td>{{book.isbn}}</td>
+            <td><b>ISBN13</b></td>
+            <td>{{book.isbn13}}</td>
+        </tr>
+        <tr>
+            <td><b>Language</b></td>
+            <td>{{book.language_code}}</td>
+            <td><b>No. of Pages</b></td>
+            <td>{{book.num_pages}}</td>
+        </tr>
+        <tr>
+            <td><b>No. of Ratings</b></td>
+            <td>{{book.ratings_count}}</td>
+            <td><b>No. of Text Reviews</b></td>
+            <td>{{book.text_reviews_count}}</td>
+        </tr>
+        <tr>
+            <td><b>Publication Date</b></td>
+            <td>{{book.publication_date}}</td>
+            <td><b>Publisher</b></td>
+            <td>{{book.publisher}}</td>
+        </tr>
+        <tr>
+            <td><b>Total No. of Books</b></td>
+            <td>{{book.total_quantity}}</td>
+            <td><b>Books Available to Rent</b></td>
+            <td>{{book.available_quantity}}</td>
+        </tr>
+        <tr>
+            <td><b>Rented Count</b></td>
+            <td>{{book.rented_count}}</td>
+            <td></td>
+            <td><a href="/issue/{{book.id}}" class="btn btn-success pull-right">Issue Book</a></td>
+        </tr>
+    </tbody>
+</table>
+{% endif %}
+
+{% endblock %}

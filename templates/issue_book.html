@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% block body %}
+<br>
+<div class="d-sm-flex justify-content-lg-between">
+    <h1><b>Issue Book:</b></h1>
+    <a href="/transactions" class="btn btn-dark mb-3">Back</a>
+</div>
+<hr>
+{% from 'form.html' import render_field %}
+<form method="POST" action="">
+    {% if not id%}
+    <div class="form-group">
+        {{render_field(form.book_id,class='form-control')}}
+    </div><br>
+    {% endif %}
+    <div class="form-group">
+        {{render_field(form.member_id,class='form-control')}}
+    </div><br>
+    <div class="form-group">
+        {{render_field(form.rent,class='form-control')}}
+    </div><br>
+    <button class="btn btn-success">Issue</button>
+</form>
+
+{%endblock%}

@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% block body %}
+<br>
+<div class="d-sm-flex justify-content-lg-between">
+    <h1><b>Add New Member:</b></h1>
+    <a href="/members" class="btn btn-dark mb-3">Back</a>
+</div>
+<hr>
+{% from "form.html" import render_field %}
+<form method="POST" action="">
+    <div class="form-group">
+        {{render_field(form.id, class_="form-control")}}
+    </div><br>
+    <div class="form-group">
+        {{render_field(form.name, class_="form-control")}}
+    </div><br>
+    <div class="form-group">
+        {{render_field(form.email, class_="form-control", type=email)}}
+    </div>
+    <br>
+    <p><button type="submit" class="btn btn-success" value="Submit">Add</button></p>
+</form>
+{% endblock %}

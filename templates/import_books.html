@@ -1,0 +1,32 @@
+{%extends 'layout.html'%}
+{%block body%}
+<br>
+<div class="d-sm-flex justify-content-lg-between">
+    <h1><b>Import Books</b></h1>
+    <a href="/books" class="btn btn-dark mb-3">Back</a>
+</div>
+<hr>
+{% from 'form.html' import render_field %}
+<form method='POST' action="">
+    <div class="form-group">
+        {{render_field(form.total_books,class='form-control')}}
+    </div><br>
+    <div class="form-group">
+        {{render_field(form.count_per_book,class='form-control')}}
+    </div><br>
+    <div class="form-group">
+        {{render_field(form.title,class='form-control')}}
+    </div><br>
+    <div class="form-group">
+        {{render_field(form.author,class='form-control')}}
+    </div><br>
+    <div class="form-group">
+        {{render_field(form.isbn,class='form-control')}}
+    </div><br>
+    <div class="form-group">
+        {{render_field(form.publisher,class='form-control')}}
+     </div><br> 
+    <button type="submit" class="btn btn-success" value="Submit">Import</button>
+</form>
+
+{%endblock%}

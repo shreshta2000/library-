@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+{% block body %}
+<br>
+<div class="d-sm-flex justify-content-lg-between">
+    <h1><b>Update Member Details</b></h1>
+    <a href="/members" class="btn btn-dark mb-3">Back</a>
+</div>
+<hr>
+{% from 'form.html' import render_field %}
+<form method="POST" action="">
+    <div class="form-group">
+        {{render_field(form.name,class="form-control",value=member.name)}}
+    </div><br>
+    <div class="form-group">
+        {{render_field(form.email,class="form-control",value=member.email)}}
+    </div><br>
+    <div class="form-group">
+        {{render_field(form.outstanding_debt,class="form-control",value=member.outstanding_debt)}}
+    </div><br>
+    <button type="submit" class="btn btn-success" value="Submit">Edit</button>
+</form>
+{% endblock %}

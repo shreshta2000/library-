@@ -1,0 +1,58 @@
+{% extends 'layout.html'%}
+{%block body%}
+<br>
+<center>
+    <h1><b>Reports</b></h1>
+</center>
+<hr>
+{%if top_members%}
+<br>
+<center>
+    <h2>Highest Paying Member</h2>
+</center>
+<hr>
+<table class="table table-hover table-striped table-bordered border-dark ">
+    <thead class="table table-bordered border-dark  bg-gradient text-dark text-center" style="background-color: rgb(167, 191, 253);">
+        <tr>
+            <th>Member ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Amount Spent</th>
+        </tr>
+    </thead>
+    {% for member in top_members %}
+    <tr class="text-center">
+        <td>{{member['id']}}</td>
+        <td>{{member['name']}}</td>
+        <td>{{member['email']}}</td>
+        <td>{{member['amount_spent']}}</td>
+    </tr>
+    {% endfor%}
+</table>
+{% endif %}
+{% if top_books %}
+<br>
+<center>
+    <h2>Most Rented Books</h2>
+</center>
+<hr>
+<table class="table table-hover table-striped table-bordered border-dark ">
+    <thead class="table table-bordered border-dark bg-gradient text-dark text-center" style="background-color: rgb(167, 191, 253);">
+        <tr>
+            <th>Book ID</th>
+            <th>Title</th>
+            <th>Author(s)</th>
+            <th>Rented Count</th>
+        </tr>
+    </thead>
+    {% for book in top_books %}
+    <tr class="text-center">
+        <td>{{book['id']}}</td>
+        <td>{{book['title']}}</td>
+        <td>{{book['author']}}</td>
+        <td>{{book['rented_count']}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+{% endblock %}

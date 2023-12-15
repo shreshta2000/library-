@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+{% block body %}
+<br>
+<div class="d-sm-flex justify-content-lg-between">
+    <h1><b>Return book:</b></h1>
+    <a href="/transactions" class="btn btn-dark mb-3">Back</a>
+</div>
+<hr>
+<h4><b style="color: rgb(0, 0, 73);">Rent Per Day</b> = {{ transaction['per_day_fee']}} days</h4>
+<h4><b style="color: rgb(0, 0, 73);">Book Issue Date</b> = {{ transaction['borrowed_on']}}</h4>
+<h4><b style="color: rgb(0, 0, 73);">Total Days</b> = {{ days}} days</h4>
+<h4><b style="color: rgb(0, 0, 73);">Outstanding Debt</b> = {{ outstanding_debt }}</h4>
+<h4><b style="color: rgb(0, 0, 73);">Book Rent</b> = <i style="color: rgb(255, 0, 0);">{{total}}</i></h4>
+<hr>
+{%from 'form.html' import render_field %}
+<form method='POST' action="">
+    <div>
+        {{ render_field(form.amount,class="form-control") }}
+    </div><br>
+    <button type="submit" class="btn btn-success"> Submit</button>
+</form>
+{% endblock%}

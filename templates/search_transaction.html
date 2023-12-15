@@ -1,0 +1,53 @@
+{% extends 'layout.html' %}
+{% block body %}
+<br>
+<br>
+<div class="d-sm-flex justify-content-lg-between">
+    <h1><b>Search Transaction</b></h1>
+    <a href="/transactions" class="btn btn-dark mb-3">Back</a>
+</div>
+<hr>
+{% from 'form.html' import render_field %}
+<form method="POST" action="">
+    <div class="form-group">
+        {{ render_field(form.book_id,class="form-control")}}
+    </div><br>
+    <div class="form-group">
+        {{ render_field(form.member_id,class="form-control")}}
+    </div><br>
+    <button class="btn btn-success">Search</button>
+</form>
+<br>
+{% if transactions %}
+    <table class="table table-hover table-striped table-bordered border-dark">
+        <thead class="table-hover table-bordered border-dark bg-gradient text-center text-dark" style="background-color: rgb(167, 191, 253);">
+            <th><a href="/sort/id" style="text-decoration: none; color: black;">Transaction ID</a></th>
+            <th><a href="/sort/book_id" style="text-decoration: none; color: black;">Book ID</a></th>
+            <th><a href="/sort/member_name" style="text-decoration: none; color: black;">Member Name</a></th>
+            <th><a href="/sort/per_day_fee" style="text-decoration: none; color: black;">Per Day Rent</a></th>
+            <th><a href="/sort/borrowed_on" style="text-decoration: none; color: black;">Borrowed On</a></th>
+            <th><a href="/sort/returned_on" style="text-decoration: none; color: black;">Returned On</a></th>
+            <th><a href="/sort/total_charge" style="text-decoration: none; color: black;">Total Charge</a></th>
+            <th><a href="/sort/amount_paid" style="text-decoration: none; color: black;">Amount Paid</a></th>
+            <th></th>
+        </thead>
+        {% for transaction in transactions%}
+        <tr class="text-center">
+            <td>{{transaction.id}}</td>
+            <td><a href="/book/{{transaction.book_id}}" style="text-decoration: none; color: black;" >{{transaction.book_id}}</a></td>
+            <td><a href="/member_details/{{transaction.member_id}}" style="text-decoration: none; color: black;">{{transaction.member_name}}</a></td>
+            <td>{{transaction.per_day_fee}}</td>
+            <td>{{transaction.borrowed_on}}</td>
+            <td>{{transaction.returned_on}}</td>
+            <td>{{transaction.total_charge}}</td>
+            <td>{{transaction.amount_paid}}</td>
+            {% if transaction.amount_paid=='-' %}
+            <td><a href="return_book/{{transaction.id}}" class="btn btn-danger pull-right">Return</a></td>
+            {% else %}
+            <td><a href="delete_transaction/{{transaction.id}}" class="btn btn-secondary pull-right">Delete</a></td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+{% endblock %}

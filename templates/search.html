@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block body %}
+<br>
+<div class="d-sm-flex justify-content-lg-between">
+    <h1><b>Search Book</b></h1>
+    <a href="/books" class="btn btn-dark mb-3">Back</a>
+</div>
+<hr>
+{% from "form.html" import render_field %}
+<form method="POST" action="">
+    <div class="form-group">
+        {{render_field(form.id, class="form-control")}}
+    </div><br>
+    <div class="form-group">
+        {{render_field(form.title, class="form-control")}}
+    </div><br>
+    <div class="form-group">
+        {{render_field(form.author ,class="form-control")}}
+    </div><br>
+    <button type="submit" class="btn btn-success" value="Submit">Search</button>
+</form>
+{% if books %}
+    <br>
+    <h2 >Search Result: </h2>
+    <hr>
+    <table class="table table-hover table-striped table-bordered border-dark">
+        <thead  class="table-hover table-bordered border-dark  bg-gradient text-center text-dark" style="background-color: rgb(167, 191, 253);">
+            <th>Book Id</th>
+            <th>Book Title</th>
+            <th>Book Author</th>
+            <th>Total Quantity</th>
+            <th>Available Quantity</th>
+            <th>Rented Count</th>
+            <th></th>
+            <th></th>
+        </thead>
+        {% for book in books %}
+        <tr class="text-center">
+            <td class="fw-bold">{{book.id}}</td>
+            <td>{{book.title}}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.total_quantity}}</td>
+            <td>{{book.available_quantity}}</td>
+            <td>{{book.rented_count}}</td>
+            <td><a href="/book/{{book.id}}" class="btn btn-success">Details</a></td>
+            <td><a href="/delete_book/{{book.id}}" class="btn btn-danger">Delete</a></td>
+        </tr>
+        {%endfor%}
+    </table>
+{% endif %}
+{% endblock %}

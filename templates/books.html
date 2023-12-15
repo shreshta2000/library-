@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+{% block body %}
+<br>
+<center><h1><b>Books</b></h1>
+<a class="btn btn-success" href="/add_book">Add New Book</a>
+<a class="btn btn-success" href="/search">Search Book</a>
+<a class="btn btn-warning" href="/import_books">Import From API</a></center>
+
+<hr >
+{% if books %}
+<div class="table-responsive">
+<table class="table table-hover table-striped table-bordered border-dark">
+    <thead class="table-hover table-bordered border-dark  bg-gradient text-center text-dark" style="background-color: rgb(167, 191, 253);">
+        <tr>
+            <th>BookID</th>
+            <th>Title</th>
+            <th>Author(s)</th>
+            <th>Stock</th>
+            <th>Available</th>
+            <th>Rented</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody class="text-center">
+        {% for book in books %}        
+        <tr>
+            <td class="fw-bold">{{book.id}}</td>
+            <td>{{book.title}}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.total_quantity}}</td>
+            <td>{{book.available_quantity}}</td>
+            <td>{{book.rented_count}}</td>
+            <td><a href="/book/{{book.id}}" class="btn btn-success">Details</a></td>
+            <td><a href="/delete_book/{{book.id}}" class="btn btn-danger">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endif %}
+{% endblock %}

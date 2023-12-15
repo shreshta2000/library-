@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+{% block body %}
+<br>
+<center>
+    <h1><b>Members</b></h1>
+    <a class="btn btn-success" href="/add_member">Add New Member</a>
+    <a class="btn btn-success" href="/search_member">Search Member</a>
+</center>
+<hr>
+{% if members%}
+<div class="table-responsive">
+    <table class="table  table-hover table-striped table-bordered border-dark">
+        <thead class="table-hover table-bordered border-dark bg-gradient text-center text-dark" style="background-color: rgb(167, 191, 253);">
+            <tr>
+                <th>Member ID</th>
+                <th>Name</th>
+                <th>Email ID</th>
+                <th>Registered On</th>
+                <th>Outstanding Debt</th>
+                <th>Amount Spent</th>
+                <th>Issued Books</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="text-center">
+            {% for member in members %}
+            <tr>
+                <td>{{member.id}}</td>
+                <td>{{member.name}}</td>
+                <td>{{member.email}}</td>
+                <td>{{member.registered_on.date()}}</td>
+                <td>{{member.outstanding_debt}}</td>
+                <td>{{member.amount_spent}}</td>
+                <td>{{member.issued_books}}</td>
+                <td><a href="edit_member/{{member.id}}" class="btn btn-success pull-right">Edit</a></td>
+                <td><a href="/delete_member/{{member.id}}" class="btn btn-danger pull-right">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+{% block body %}
+<br>
+<br>
+<div class="d-sm-flex justify-content-lg-between">
+    <h1><b>Search Member</b></h1>
+    <a href="/members" class="btn btn-dark mb-3">Back</a>
+</div>
+<hr>
+{% from 'form.html' import render_field %}
+<form method="POST" action="">
+    <div class="form-group">
+        {{ render_field(form.id,class="form-control")  }}
+    </div><br>
+    <div class="form-group">
+        {{ render_field(form.name,class="form-control")  }}
+    </div><br>
+    <button class="btn btn-success">Search</button>
+</form>
+<br>
+{% if members %}
+    <table class="table table-hover table-striped table-bordered border-dark">
+        <thead class="table-hover table-bordered border-dark bg-gradient text-center text-dark" style="background-color: rgb(167, 191, 253);">
+            <th>Member ID</th>
+            <th>Name</th>
+            <th>Email ID</th>
+            <th>Registered On</th>
+            <th>Outstanding Debt</th>
+            <th>Amount Spent</th>
+            <th></th>
+            <th></th>
+        </thead>
+        {% for member in members%}
+        <tr class="text-center">
+            <td>{{member.id}}</td>
+            <td>{{member.name}}</td>
+            <td>{{member.email}}</td>
+            <td>{{member.registered_on}}</td>
+            <td>{{member.outstanding_debt}}</td>
+            <td>{{member.amount_spent}}</td>
+            <td><a href="edit_member/{{member.id}}" class="btn btn-success pull-right">Edit</a></td>
+            <td><a href="/delete_member/{{member.id}}" class="btn btn-danger pull-right">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+{% endblock %}
